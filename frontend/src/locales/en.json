@@ -1,0 +1,130 @@
+{
+  "app": {
+    "title": "Library",
+    "tagline": "Catalog and loan management"
+  },
+  "nav": {
+    "catalog": "Catalog",
+    "admin": "Administration",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "theme": "Toggle theme",
+    "language": "Language"
+  },
+  "catalog": {
+    "title": "Catalog",
+    "search": "Search by title, author or description…",
+    "available": "Available: {{available}} of {{total}}",
+    "unavailable": "Out of stock",
+    "lastCopy": "Last copy",
+    "empty": "No books found.",
+    "emptyHint": "Try a different search term.",
+    "error": "The catalog could not be loaded.",
+    "retry": "Try again",
+    "details": "Details",
+    "noCover": "No cover",
+    "count": "{{count}} titles"
+  },
+  "book": {
+    "title": "Title",
+    "author": "Author",
+    "description": "Description",
+    "isbn": "ISBN",
+    "quantity": "Total quantity",
+    "cover": "Cover",
+    "availability": "Availability"
+  },
+  "reader": {
+    "fullName": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "cardNumber": "Card number"
+  },
+  "loans": {
+    "issue": "Issue",
+    "return": "Return",
+    "overdue": "Overdue",
+    "active": "Active",
+    "returned": "Returned",
+    "dueOn": "Due: {{date}}",
+    "borrowedOn": "Borrowed: {{date}}"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close"
+  },
+  "login": {
+    "title": "Administrator sign-in",
+    "subtitle": "The panel is restricted to library administrators.",
+    "email": "Email",
+    "password": "Password",
+    "invalidCredentials": "Wrong email or password.",
+    "failed": "Sign-in failed. Please try again."
+  },
+  "admin": {
+    "tabs": {
+      "dashboard": "Dashboard",
+      "books": "Books",
+      "readers": "Readers",
+      "loans": "Loans"
+    },
+    "filter": {
+      "active": "Active",
+      "overdue": "Overdue",
+      "returned": "Returned",
+      "all": "All"
+    },
+    "stats": {
+      "books": "Titles",
+      "totalCopies": "Total copies",
+      "availableCopies": "Available copies",
+      "readers": "Readers",
+      "activeLoans": "Active loans",
+      "overdue": "Overdue",
+      "returnedLoans": "Returned"
+    },
+    "actions": "Actions",
+    "activeLoans": "Active loans",
+    "status": "Status",
+    "book": "Book",
+    "reader": "Reader",
+    "borrowed": "Borrowed",
+    "due": "Due",
+    "addBook": "New book",
+    "editBook": "Edit book",
+    "addReader": "New reader",
+    "editReader": "Edit reader",
+    "searchReaders": "Search by name, phone, email or card…",
+    "chooseFile": "Choose file",
+    "coverHint": "JPEG, PNG or WebP, up to 5 MB.",
+    "issueLoan": "Issue loan",
+    "issueLoanHint": "Only books with a free copy are listed.",
+    "chooseBook": "choose a book",
+    "chooseReader": "choose a reader",
+    "noAvailableBooks": "No books have a free copy.",
+    "selectBookAndReader": "Choose a book and a reader.",
+    "duePeriodNote": "The due date is set automatically — 14 days from today.",
+    "daysLate": "{{count}} days",
+    "confirmDeleteBook": "Delete “{{title}}”?",
+    "confirmDeleteReader": "Delete reader {{name}}?",
+    "noReaders": "No readers yet.",
+    "noLoans": "No loans for this filter.",
+    "topBorrowed": "Most borrowed titles",
+    "exportCsv": "Download CSV",
+    "saveFailed": "Could not save.",
+    "deleteFailed": "Could not delete.",
+    "returnFailed": "Could not mark as returned.",
+    "readersError": "Readers could not be loaded.",
+    "loansError": "Loans could not be loaded.",
+    "summaryError": "The report could not be loaded.",
+    "filteredByReader": "Showing only loans of {{name}}",
+    "filteredByBook": "Showing only loans of “{{title}}”",
+    "clearFilter": "Show all",
+    "viewReaderLoans": "View loans of {{name}}",
+    "viewBookLoans": "View loans of “{{title}}”"
+  }
+}

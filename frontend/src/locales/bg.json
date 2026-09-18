@@ -1,0 +1,130 @@
+{
+  "app": {
+    "title": "Библиотека",
+    "tagline": "Каталог и управление на заемания"
+  },
+  "nav": {
+    "catalog": "Каталог",
+    "admin": "Администрация",
+    "login": "Вход",
+    "logout": "Изход",
+    "theme": "Смяна на темата",
+    "language": "Език"
+  },
+  "catalog": {
+    "title": "Каталог",
+    "search": "Търсене по заглавие, автор или описание…",
+    "available": "Налични: {{available}} от {{total}}",
+    "unavailable": "Изчерпана",
+    "lastCopy": "Последен екземпляр",
+    "empty": "Няма намерени книги.",
+    "emptyHint": "Опитайте с друга дума за търсене.",
+    "error": "Каталогът не можа да се зареди.",
+    "retry": "Опитай отново",
+    "details": "Подробности",
+    "noCover": "Няма корица",
+    "count": "{{count}} заглавия"
+  },
+  "book": {
+    "title": "Заглавие",
+    "author": "Автор",
+    "description": "Описание",
+    "isbn": "ISBN",
+    "quantity": "Общо количество",
+    "cover": "Корица",
+    "availability": "Наличност"
+  },
+  "reader": {
+    "fullName": "Име",
+    "phone": "Телефон",
+    "email": "Имейл",
+    "cardNumber": "Номер на карта"
+  },
+  "loans": {
+    "issue": "Заеми",
+    "return": "Върни",
+    "overdue": "Просрочена",
+    "active": "Активно",
+    "returned": "Върната",
+    "dueOn": "Срок: {{date}}",
+    "borrowedOn": "Заета на: {{date}}"
+  },
+  "common": {
+    "loading": "Зареждане…",
+    "save": "Запази",
+    "cancel": "Отказ",
+    "delete": "Изтрий",
+    "edit": "Редактирай",
+    "close": "Затвори"
+  },
+  "login": {
+    "title": "Вход за администратори",
+    "subtitle": "Достъпът до панела е само за администратори на библиотеката.",
+    "email": "Имейл",
+    "password": "Парола",
+    "invalidCredentials": "Грешен имейл или парола.",
+    "failed": "Входът не бе успешен. Опитайте отново."
+  },
+  "admin": {
+    "tabs": {
+      "dashboard": "Табло",
+      "books": "Книги",
+      "readers": "Читатели",
+      "loans": "Заемания"
+    },
+    "filter": {
+      "active": "Активни",
+      "overdue": "Просрочени",
+      "returned": "Върнати",
+      "all": "Всички"
+    },
+    "stats": {
+      "books": "Заглавия",
+      "totalCopies": "Общо екземпляри",
+      "availableCopies": "Свободни екземпляри",
+      "readers": "Читатели",
+      "activeLoans": "Активни заемания",
+      "overdue": "Просрочени",
+      "returnedLoans": "Върнати"
+    },
+    "actions": "Действия",
+    "activeLoans": "Активни заемания",
+    "status": "Статус",
+    "book": "Книга",
+    "reader": "Читател",
+    "borrowed": "Заета на",
+    "due": "Срок",
+    "addBook": "Нова книга",
+    "editBook": "Редакция на книга",
+    "addReader": "Нов читател",
+    "editReader": "Редакция на читател",
+    "searchReaders": "Търсене по име, телефон, имейл или карта…",
+    "chooseFile": "Избери файл",
+    "coverHint": "JPEG, PNG или WebP, до 5 MB.",
+    "issueLoan": "Издай заемане",
+    "issueLoanHint": "Показват се само книги със свободен екземпляр.",
+    "chooseBook": "изберете книга",
+    "chooseReader": "изберете читател",
+    "noAvailableBooks": "Няма книги със свободни екземпляри.",
+    "selectBookAndReader": "Изберете книга и читател.",
+    "duePeriodNote": "Срокът се изчислява автоматично — 14 дни от днес.",
+    "daysLate": "{{count}} дни",
+    "confirmDeleteBook": "Да изтрия ли „{{title}}“?",
+    "confirmDeleteReader": "Да изтрия ли читателя {{name}}?",
+    "noReaders": "Няма въведени читатели.",
+    "noLoans": "Няма заемания за този филтър.",
+    "topBorrowed": "Най-заемани заглавия",
+    "exportCsv": "Изтегли CSV",
+    "saveFailed": "Записът не бе успешен.",
+    "deleteFailed": "Изтриването не бе успешно.",
+    "returnFailed": "Връщането не бе успешно.",
+    "readersError": "Читателите не можаха да се заредят.",
+    "loansError": "Заеманията не можаха да се заредят.",
+    "summaryError": "Справката не можа да се зареди.",
+    "filteredByReader": "Показани са само заеманията на {{name}}",
+    "filteredByBook": "Показани са само заеманията на „{{title}}“",
+    "clearFilter": "Покажи всички",
+    "viewReaderLoans": "Виж заеманията на {{name}}",
+    "viewBookLoans": "Виж заеманията на „{{title}}“"
+  }
+}

@@ -1,0 +1,152 @@
+// Biblioteka - Library Management System
+// Data model reference: CLAUDE.md section 4. Invariants: section 5.
+//
+// Load-bearing rules encoded here:
+//   - No availableQuantity column. It is computed as totalQuantity - count(ACTIVE loans).
+//   - LoanStatus has no OVERDUE member. Overdue is derived from dueDate at query time.
+//   - Loan relations use Restrict, never Cascade: loan history outlives books and readers.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  // Prisma 7: the connection URL lives in prisma.config.ts, not here.
+  // PrismaClient receives a driver adapter instead (src/lib/prisma.ts).
+}
+
+model Book {
+  id            Int      @id @default(autoincrement())
+  title         String   @db.VarChar(255)
+  author        String   @db.VarChar(255)
+  description   String?  @db.Text
+  coverImageUrl String?  @db.VarChar(500)
+  isbn          String?  @unique @db.VarChar(20)
+  totalQuantity Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  loans         Loan[]
+
+  @@index([title])
+  @@index([author])
+}
+
+model Reader {
+  id         Int      @id @default(autoincrement())
+  fullName   String   @db.VarChar(255)
+  phone      String?  @db.VarChar(30)
+  email      String?  @db.VarChar(255)
+  cardNumber String?  @unique @db.VarChar(50)
+  createdAt  DateTime @default(now())
+  loans      Loan[]
+
+  @@index([fullName])
+}
+
+model Loan {
+  id         Int        @id @default(autoincrement())
+  bookId     Int
+  readerId   Int
+  borrowDate DateTime   @default(now())
+  dueDate    DateTime
+  returnDate DateTime?
+  status     LoanStatus @default(ACTIVE)
+
+  book   Book   @relation(fields: [bookId], references: [id], onDelete: Restrict)
+  reader Reader @relation(fields: [readerId], references: [id], onDelete: Restrict)
+
+  // Hot path: counting ACTIVE loans per book on every catalog load.
+  // Overdue report: status + dueDate range scan.
+  @@index([bookId, status])
+  @@index([readerId, status])
+  @@index([status, dueDate])
+}
+
+enum LoanStatus {
+  ACTIVE
+  RETURNED
+}
+
+// ---------------------------------------------------------------------------
+// Better Auth tables (user / session / account / verification).
+//
+// Do NOT hand-edit these to guess at Better Auth's expectations, and do NOT use
+// `npx @better-auth/cli generate`: that package is deprecated and its last release
+// (1.4.21) emits a schema that is missing fields this version requires - it omits
+// account.issuer, which fails at sign-up with "Unknown argument `issuer`".
+//
+// The authoritative field list comes from the installed library itself:
+//   import { getAuthTables } from 'better-auth/db';
+//   getAuthTables(auth.options)
+// Re-run that after upgrading better-auth and reconcile any differences here.
+// ---------------------------------------------------------------------------
+
+model User {
+  id            String    @id
+  name          String    @db.Text
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?   @db.Text
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  role          String?   @db.Text
+  sessions      Session[]
+  accounts      Account[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?  @db.Text
+  userAgent String?  @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  // No prefix length: userId is VARCHAR(191), so a 191-char prefix is redundant
+  // and makes Prisma re-emit CREATE INDEX on every migrate.
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  // Required since better-auth 1.7: identifies the credential issuer.
+  issuer                String    @db.Text
+  accountId             String    @db.Text
+  providerId            String    @db.Text
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?   @db.Text
+  password              String?   @db.Text
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String   @db.Text
+  value      String   @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier(length: 191)])
+  @@map("verification")
+}
